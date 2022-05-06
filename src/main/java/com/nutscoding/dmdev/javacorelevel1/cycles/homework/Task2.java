@@ -16,16 +16,11 @@ public class Task2 {
 
     public static int reverse(int value) {
         int result = 0;
-        String a = String.valueOf(0);
-        while (value % 10 > 1) {
-            a = a + value % 10;
+        while (value != 0){
+            int temp = value % 10;
+            result = result * 10 + temp;
             value = value / 10;
-            result = Integer.parseInt(a);
         }
         return result;
     }
 }
-
-
-
-
