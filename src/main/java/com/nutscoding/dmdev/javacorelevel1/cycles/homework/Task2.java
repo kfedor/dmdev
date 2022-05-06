@@ -16,7 +16,7 @@ public class Task2 {
 
     public static int reverse(int value) {
         int result = 0;
-        while (value != 0){
+        while (value != 0) {
             int temp = value % 10;
             result = result * 10 + temp;
             value = value / 10;
