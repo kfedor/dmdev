@@ -1,4 +1,4 @@
-package com.nutscoding.dmdev.javacorelevel1.functions.homework;
+package com.github.nutscoding.dmdev.homework.week1.functions;
 
 /**
  * Даны 3 переменные:

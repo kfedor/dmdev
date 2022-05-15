@@ -1,4 +1,4 @@
-package com.nutscoding.dmdev.javacorelevel1.cycles.homework;
+package com.github.nutscoding.dmdev.homework.week1.cycles;
 
 /**
  * Программист Ваня сразу после окончания курсов dmdev
@@ -34,30 +34,30 @@ public class Task3 {
 
     }
 
-    public static double investAccount (int salary, int month, int periodOfIncrease, int amountOfIncrease) {
+    public static double investAccount(int salary, int month, int periodOfIncrease, int amountOfIncrease) {
         int currentMonth = 1;
         double investSum = 0;
 
-        while(currentMonth < month){
-            if (currentMonth % periodOfIncrease == 0){
+        while (currentMonth <= month) {
+            investSum += (investSum * 0.02) + (salary * 0.1);
+            if (currentMonth % periodOfIncrease == 0) {
                 salary += amountOfIncrease;
             }
-            investSum = investSum + (investSum * 0.02) + (salary * 0.1);
             currentMonth++;
         }
         return investSum;
     }
 
-    public static  double mainAccount(int salary, int month, int periodOfIncrease, int amountOfIncrease){
+    public static double mainAccount(int salary, int month, int periodOfIncrease, int amountOfIncrease) {
         double mainAccount = 0;
         int currentMonth = 1;
         int foodSum = 300;
-        while(currentMonth <= month){
-            if (currentMonth % periodOfIncrease == 0){
+        while (currentMonth <= month) {
+            double brokerDeduction = salary * 0.1;
+            mainAccount += (salary - foodSum - brokerDeduction);
+            if (currentMonth % periodOfIncrease == 0) {
                 salary += amountOfIncrease;
             }
-            double brokerDeduction = salary * 0.1;
-            mainAccount = mainAccount + (salary - foodSum - brokerDeduction);
             currentMonth++;
         }
         return mainAccount;

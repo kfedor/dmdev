@@ -1,4 +1,4 @@
-package com.nutscoding.dmdev.javacorelevel1.cycles.homework;
+package com.github.nutscoding.dmdev.homework.week1.cycles;
 
 /**
  * Дано целое число.
