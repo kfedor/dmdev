@@ -9,31 +9,37 @@ package com.github.nutscoding.dmdev.homework.week2.string;
  * Например:
  * "abc Cpddd Dio OsfWw" -> "ABCPDIOSFW"
  */
-
 public class Task1 {
 
     public static void main(String[] args) {
         String value = "abc Cpddddddddddddd Dio OsfWw";
-        value = value.replaceAll(" ", "");
-        System.out.println(removeDuplicates(value));
-
+        StringBuilder valueWithoutSpaces = removeSpaces(value);
+        System.out.println(removeDuplicates(valueWithoutSpaces));
     }
 
-    private static String removeDuplicates(String value) {
-        StringBuilder result = new StringBuilder();
-        String[] values = value.split("");
+    private static StringBuilder removeSpaces(String value) {
+        char[] values = value.toCharArray();
+        StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < values.length; i++) {
-            boolean repeated = false;
-            for (int j = i + 1; j < values.length; j++) {
-                if (values[i].equalsIgnoreCase(values[j])) {
-                    repeated = true;
-                    break;
-                }
-            }
-            if (!repeated) {
-                result.append(values[i]);
+            if (values[i] != ' ') {
+                stringBuilder.append(values[i]);
             }
         }
-        return result.toString().toUpperCase();
+        return stringBuilder;
+    }
+
+    private static String removeDuplicates(StringBuilder valueWithoutSpaces) {
+        StringBuilder stringBuilder = new StringBuilder();
+        char[] values = valueWithoutSpaces.toString().toUpperCase().toCharArray();
+        for (int i = 0; i < values.length; i++) {
+            if (i == 0) {
+                stringBuilder.append(values[i]);
+                continue;
+            }
+            if (values[i] != values[i - 1]) {
+                stringBuilder.append(values[i]);
+            }
+        }
+        return stringBuilder.toString();
     }
 }

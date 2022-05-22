@@ -10,7 +10,6 @@ package com.github.nutscoding.dmdev.homework.week2.arrays;
  * Не забывать, что всю логику приложения нужно выносить в отдельные функции.
  * main - только для тестирования написанного функционала.
  */
-
 public class Task1 {
 
     public static void main(String[] args) {
@@ -29,12 +28,12 @@ public class Task1 {
      * @return values2 - new array
      */
     private static int[] removeNegativeNumbers(int[] values) {
-        int[] arrayWithoutNegative = new int[findNewArrayLength(values)];
-        int temp = 0;
+        int[] arrayWithoutNegative = new int[countNoneNegativeNumbers(values)];
+        int counter = 0;
         for (int i = 0; i < values.length; i++) {
             if (values[i] >= 0) {
-                arrayWithoutNegative[temp] = values[i];
-                temp++;
+                arrayWithoutNegative[counter] = values[i];
+                counter++;
             }
         }
         return arrayWithoutNegative;
@@ -59,7 +58,7 @@ public class Task1 {
      * @param values - initial array
      * @return count - length to create new array
      */
-    private static int findNewArrayLength(int[] values) {
+    private static int countNoneNegativeNumbers(int[] values) {
         int count = 0;
         for (int i = 0; i < values.length; i++) {
             if (values[i] >= 0) {
@@ -72,11 +71,11 @@ public class Task1 {
     /**
      * This method prints new array
      *
-     * @param values2 - new array
+     * @param result - new array
      */
-    private static void printNewArray(int[] values2) {
-        for (int i = 0; i < values2.length; i++) {
-            System.out.println(values2[i] + " ");
+    private static void printNewArray(int[] result) {
+        for (int i = 0; i < result.length; i++) {
+            System.out.println(result[i] + " ");
         }
     }
 }

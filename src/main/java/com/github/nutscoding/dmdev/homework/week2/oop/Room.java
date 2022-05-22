@@ -2,25 +2,20 @@ package com.github.nutscoding.dmdev.homework.week2.oop;
 
 class Room {
 
-    private boolean passable;
+    private final boolean passable;
 
     public Room(boolean passable) {
         this.passable = passable;
     }
 
     void print(boolean passable) {
-        if (passable) {
-            System.out.println("You can walk throw this room.");
-        } else {
-            System.out.println("Room is not passable.");
-        }
+        String print = passable ? "You can walk throw this room." : "Room is not passable.";
+        System.out.println(print);
     }
+
 
     public boolean isPassable() {
         return passable;
     }
 
-    public void setPassable(boolean passable) {
-        this.passable = passable;
-    }
 }

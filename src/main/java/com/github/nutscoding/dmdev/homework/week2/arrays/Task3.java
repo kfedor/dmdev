@@ -19,68 +19,82 @@ public class Task3 {
 
     public static void main(String[] args) {
         int[] initialArray = {-4, 0, 1, 9, 0, -18, 3};
-        divideToThreeArrays(initialArray);
-        printNewArray(divideToThreeArrays(initialArray));
+        printNewArray(createDoubleArray(initialArray));
     }
 
-    private static int[][] divideToThreeArrays(int[] initialArray) {
-        int[] positiveArray = new int[findPositiveArrayLength(initialArray)];
-        int tempForPositive = 0;
-        int[] negativeArray = new int[findNegativeArrayLength(initialArray)];
-        int tempForNegative = 0;
-        int[] zerosArray = new int[findZerosArrayLength(initialArray)];
-        int tempForZeros = 0;
-
-        for (int i = 0; i < initialArray.length; i++) {
-            if (initialArray[i] > 0) {
-                positiveArray[tempForPositive] = initialArray[i];
-                tempForPositive++;
-            } else if (initialArray[i] < 0) {
-                negativeArray[tempForNegative] = initialArray[i];
-                tempForNegative++;
-            } else {
-                zerosArray[tempForZeros] = initialArray[i];
-                tempForZeros++;
-            }
-        }
+    private static int[][] createDoubleArray(int[] initialArray) {
         return new int[][]{
-                positiveArray, negativeArray, zerosArray
+                createPositiveNumbersArray(initialArray),
+                createNegativeNumbersArray(initialArray),
+                createZeroNumbersArray(initialArray)
         };
     }
 
-    private static int findPositiveArrayLength(int[] initialArray) {
-        int count = 0;
+    private static int[] createPositiveNumbersArray(int[] initialArray) {
+        int condition = 1;
+        int[] positiveNumbersArray = new int[findArrayLength(initialArray, condition)];
+        int counter = 0;
         for (int i = 0; i < initialArray.length; i++) {
             if (initialArray[i] > 0) {
-                count++;
+                positiveNumbersArray[counter] = initialArray[i];
+                counter++;
             }
         }
-        return count;
+        return positiveNumbersArray;
     }
 
-    private static int findNegativeArrayLength(int[] initialArray) {
-        int count = 0;
+    private static int[] createNegativeNumbersArray(int[] initialArray) {
+        int condition = -1;
+        int[] negativeNumbersArray = new int[findArrayLength(initialArray, condition)];
+        int counter = 0;
         for (int i = 0; i < initialArray.length; i++) {
             if (initialArray[i] < 0) {
-                count++;
+                negativeNumbersArray[counter] = initialArray[i];
+                counter++;
             }
         }
-        return count;
+        return negativeNumbersArray;
     }
 
-    private static int findZerosArrayLength(int[] initialArray) {
-        int count = 0;
+    private static int[] createZeroNumbersArray(int[] initialArray) {
+        int condition = 0;
+        int[] zeroNumbersArray = new int[findArrayLength(initialArray, condition)];
+        int counter = 0;
         for (int i = 0; i < initialArray.length; i++) {
             if (initialArray[i] == 0) {
-                count++;
+                zeroNumbersArray[counter] = initialArray[i];
+                counter++;
             }
         }
-        return count;
+        return zeroNumbersArray;
     }
 
-    private static void printNewArray(int[][] values) {
-        for (int i = 0; i < values.length; i++) {
-            int[] temp = values[i];
+    private static int findArrayLength(int[] initialArray, int condition) {
+        int positiveCounter = 0;
+        int negativeCounter = 0;
+        int zeroCounter = 0;
+        for (int i = 0; i < initialArray.length; i++) {
+            if (initialArray[i] > 0) {
+                positiveCounter++;
+            } else if (initialArray[i] < 0) {
+                negativeCounter++;
+            } else {
+                zeroCounter++;
+            }
+
+        }
+        if (condition > 0) {
+            return positiveCounter;
+        } else if (condition < 0) {
+            return negativeCounter;
+        } else {
+            return zeroCounter;
+        }
+    }
+
+    private static void printNewArray(int[][] resultArray) {
+        for (int i = 0; i < resultArray.length; i++) {
+            int[] temp = resultArray[i];
             for (int j = 0; j < temp.length; j++) {
                 System.out.print(temp[j] + " ");
             }

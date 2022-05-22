@@ -2,7 +2,7 @@ package com.github.nutscoding.dmdev.homework.week2.oop;
 
 class Apartment {
 
-    private int number;
+    private final int number;
     private Room[] rooms;
 
     public Apartment(int number, Room[] rooms) {
@@ -10,11 +10,11 @@ class Apartment {
         this.rooms = rooms;
     }
 
-    void print(int number, Room[] rooms) {
+    void print(int number) {
         System.out.println("Apartment No." + number + " has "
-                + rooms.length + definePlural(rooms));
-        for (int i = 0; i < rooms.length; i++) {
-            rooms[i].print(rooms[i].isPassable());
+                + this.rooms.length + definePlural(this.rooms));
+        for (int i = 0; i < this.rooms.length; i++) {
+            this.rooms[i].print(this.rooms[i].isPassable());
         }
     }
 
@@ -28,10 +28,6 @@ class Apartment {
 
     public int getNumber() {
         return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
     }
 
     public Room[] getRooms() {
