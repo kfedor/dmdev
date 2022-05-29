@@ -13,21 +13,22 @@ public class ChatRunner {
                 new Chat("chatB", 1156),
                 new Chat("chatC", 10006)
         );
+        List<Chat> chatList1 = removeChats(chatList);
 
-        Iterator<Chat> iterator = chatList.iterator();
+        Collections.sort(chatList1);
+        System.out.println("Default sorting " + chatList1);
 
-        while (iterator.hasNext()) {
-            Chat next = iterator.next();
-            if (next.getUserAmount() < 1000) {
-                iterator.remove();
+        chatList1.sort(new UserAmountComparator());
+        System.out.println("Custom sorting " + chatList1);
+    }
+
+    private static List<Chat> removeChats(List<Chat> chatList) {
+        List<Chat> chatList1 = new ArrayList<>();
+        for (Chat next : chatList) {
+            if (next.getUserAmount() > 999) {
+                chatList1.add(next);
             }
         }
-
-        Collections.sort(chatList);
-        System.out.println(chatList);
-
-        chatList.sort(new UserAmountComparator());
-        System.out.println(chatList);
-
+        return chatList1;
     }
 }

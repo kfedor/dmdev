@@ -1,5 +1,6 @@
 package com.github.nutscoding.dmdev.homework.week4.part1.task1;
 
+
 /**
  * Дан список чатов.
  * Каждый чат состоит из двух полей: название и количество пользователей в этом чате.

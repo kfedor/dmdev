@@ -1,5 +1,6 @@
 package com.github.nutscoding.dmdev.homework.week4.part1.task2;
 
+
 public class User {
 
     private int id;
