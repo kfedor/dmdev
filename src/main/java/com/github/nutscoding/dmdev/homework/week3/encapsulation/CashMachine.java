@@ -45,10 +45,10 @@ public class CashMachine {
     public boolean withdrawMoney(int amountForWithdrawing) {
         boolean result = true;
         int totalAmount = findTotalAmount();
-        if (amountForWithdrawing % 10 != 0) {
+        if (amountForWithdrawing % 10 != 0 || amountForWithdrawing % 100 == 30) {
             System.out.println
                     ("Amount is incorrect.");
-            result = false;
+            return false;
         }
         if (totalAmount < amountForWithdrawing) {
             result = false;

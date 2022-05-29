@@ -2,12 +2,11 @@ package com.github.nutscoding.dmdev.homework.week3.space;
 
 public class Earth extends Planet implements Visitable {
 
-
     public Earth(String name, double weight, double distanceToEarth, double radius, boolean isSuitableForLiFe) {
         super(name, weight, distanceToEarth, radius, isSuitableForLiFe);
     }
 
-    public void rotate() {
+    private void rotate() {
         System.out.println("Earth rotates around the sun and its axis.");
     }
 
