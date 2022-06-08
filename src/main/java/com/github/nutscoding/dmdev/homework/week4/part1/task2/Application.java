@@ -21,8 +21,6 @@ public class Application {
     public static final int ADULT = 18;
 
     public static void main(String[] args) {
-        List<Chat> chats = Arrays.asList(null, null);
-        Collections.sort(null);
         System.out.println(getAdultUsers());
         System.out.println(getMinorsAverageAge());
     }

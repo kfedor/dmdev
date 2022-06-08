@@ -4,6 +4,8 @@ import com.github.nutscoding.dmdev.homework.week4.part2.util.Genre;
 
 import java.time.Month;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 
 /**
  * Даны 2 класса:
@@ -19,11 +21,11 @@ import java.util.HashMap;
  * <p>
  * - получить все фильмы по переданному году
  * <p>
- * - получить все фильмы по переданному году и месяцу+
+ * - получить все фильмы по переданному году и месяцу
  * <p>
- * - получить все фильмы по переданному жанру+
+ * - получить все фильмы по переданному жанру
  * <p>
- * - получать ТОП-10 фильмов отсортированные по Рейтингу в порядке убывания+
+ * - получать ТОП-10 фильмов отсортированные по Рейтингу в порядке убывания
  * <p>
  * Учесть следующее:
  * <p>
@@ -38,9 +40,10 @@ public class CinemaRunner {
 
     public static void main(String[] args) {
         Cinema cinema = createCinema();
+        System.out.println();
         System.out.println(cinema.getFilmsByYear(2005));
         System.out.println();
-        System.out.println(cinema.getFilmsByMonth(1999, Month.APRIL));
+        System.out.println(cinema.getFilmsByYearAndMonth(1999, Month.APRIL));
         System.out.println();
         System.out.println(cinema.getFilmsByGenre(Genre.ACTION));
         System.out.println();
@@ -54,7 +57,7 @@ public class CinemaRunner {
         Film film3 = new Film(33, 1999, Month.JANUARY, Genre.COMEDY, 6.8);
         Film film4 = new Film(99, 2005, Month.APRIL, Genre.HORROR, 7.1);
         Film film5 = new Film(45, 2015, Month.DECEMBER, Genre.DRAMA, 9.0);
-        Cinema cinema = new Cinema(new HashMap<>());
+        Cinema cinema = new Cinema(new LinkedHashMap<>());
 
         cinema.addFilmToCinema(film);
         cinema.addFilmToCinema(film1);

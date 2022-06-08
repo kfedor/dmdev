@@ -57,7 +57,7 @@ public class Film implements Comparable<Film> {
     @Override
     public int compareTo(Film film) {
         return Double.compare(film.getRating(), rating);
-    } //добавить проверку на нал
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -5,23 +5,22 @@ import com.github.nutscoding.dmdev.homework.week4.part2.util.Genre;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.Collections;
+
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class Cinema {
 
-    private Map<Integer, List<Film>> films;
+    private Map<Integer, Set<Film>> films;
 
-    public Cinema(Map<Integer, List<Film>> films) {
+    public Cinema(Map<Integer, Set<Film>> films) {
         this.films = films;
     }
 
     public boolean addFilmToCinema(Film film) {
-        if (hasFilm(film)) {
-            System.out.println("This " + film + " is already in the cinema.");
-            return false;
-        }
-        List<Film> inputFilm = new ArrayList<>();
+        Set<Film> inputFilm = new LinkedHashSet<>();
         if (films.containsKey(film.getProductionYear())) {
             inputFilm = films.get(film.getProductionYear());
             inputFilm.add(film);
@@ -33,36 +32,35 @@ public class Cinema {
         return true;
     }
 
-    public List<Film> getFilmsByYear(int year) {
+    public Set<Film> getFilmsByYear(int year) {
         if (films.get(year) == null) {
-            System.out.println("There are no films released in " + year + " in our cinema.");
-            return new ArrayList<>();
+            return films.getOrDefault(year, new LinkedHashSet<>());
         } else {
-            return new ArrayList<>(films.get(year));
+            return new LinkedHashSet<>(films.get(year));
         }
     }
 
-    public List<Film> getFilmsByMonth(int year, Month month) {
-        List<Film> filmsByYear = new ArrayList<>(getFilmsByYear(year));
-        List<Film> filmsByMonth = new ArrayList<>();
+    public Set<Film> getFilmsByYearAndMonth(int year, Month month) {
+        Set<Film> filmsByYear = new LinkedHashSet<>(getFilmsByYear(year));
+        Set<Film> filmsByYearAndMonth = new LinkedHashSet<>();
         if (films.isEmpty()) {
-            return getFilmsByYear(year);
+            return new LinkedHashSet<>();
         } else {
             for (Film film : filmsByYear) {
                 if (film.getMonth().equals(month)) {
-                    filmsByMonth.add(film);
+                    filmsByYearAndMonth.add(film);
                 }
             }
-            if (filmsByMonth.isEmpty()) {
+            if (filmsByYearAndMonth.isEmpty()) {
                 System.out.println("There are no films released in " + month + " " + year + " in our cinema.");
             }
         }
-        return filmsByMonth;
+        return filmsByYearAndMonth;
     }
 
-    public List<Film> getFilmsByGenre(Genre genre) {
-        List<Film> filmsByGenre = new ArrayList<>();
-        for (List<Film> filmsList : films.values()) {
+    public Set<Film> getFilmsByGenre(Genre genre) {
+        Set<Film> filmsByGenre = new LinkedHashSet<>();
+        for (Set<Film> filmsList : films.values()) {
             for (Film film : filmsList) {
                 if (film.getGenre().equals(genre)) {
                     filmsByGenre.add(film);
@@ -75,9 +73,9 @@ public class Cinema {
         return filmsByGenre;
     }
 
-    public List<Film> getTopTen() { // добавить проверку на 10 фильмов
-        ArrayList<Film> topFilms = new ArrayList<>();
-        for (List<Film> filmList : films.values()) {
+    public List<Film> getTopTen() {
+        List<Film> topFilms = new ArrayList<>();
+        for (Set<Film> filmList : films.values()) {
             topFilms.addAll(filmList);
         }
         if (topFilms.isEmpty()) {
@@ -87,23 +85,13 @@ public class Cinema {
         Collections.sort(topFilms);
         if (topFilms.size() < 10) {
             System.out.println("Our cinema has only " + topFilms.size() + " films. Here is their rating: ");
+            return topFilms;
+        } else {
+            return topFilms.subList(0, 10);
         }
-        return topFilms;
     }
 
-    public boolean hasFilm(Film film) {
-        for (List<Film> filmList : films.values()) {
-            for (Film value : filmList) {
-                if (value.equals(film)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    public Map<Integer, List<Film>> getFilms() {
+    public Map<Integer, Set<Film>> getFilms() {
         return films;
     }
-
 }
